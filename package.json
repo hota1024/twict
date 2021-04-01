@@ -53,5 +53,8 @@
     "moduleNameMapper": {
       "^@/(.+)": "<rootDir>/src/$1"
     }
+  },
+  "dependencies": {
+    "ngrok": "^4.0.0"
   }
 }
