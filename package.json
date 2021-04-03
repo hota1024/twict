@@ -58,6 +58,7 @@
     }
   },
   "dependencies": {
+    "@types/twitter": "^1.7.0",
     "axios": "^0.21.1",
     "ngrok": "^4.0.0",
     "twitter": "^1.7.1",
