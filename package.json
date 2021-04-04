@@ -60,6 +60,7 @@
   "dependencies": {
     "@types/twitter": "^1.7.0",
     "axios": "^0.21.1",
+    "express": "^4.17.1",
     "ngrok": "^4.0.0",
     "twitter": "^1.7.1",
     "ufo": "^0.6.10"
