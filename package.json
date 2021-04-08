@@ -63,6 +63,7 @@
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "ngrok": "^4.0.0",
+    "request-promise": "^4.2.6",
     "twitter": "^1.7.1",
     "ufo": "^0.6.10"
   }
