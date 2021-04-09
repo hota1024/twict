@@ -1,3 +1,4 @@
+import { MuteEventPayload } from './MuteEvent'
 import { BlockEvent } from './BlockEvent'
 import { DirectMessageEvent } from './DirectMessageEvent'
 import { FavoriteEvent } from './FavoriteEvent'
@@ -46,7 +47,7 @@ export type BlockEvents = {
  */
 export type MuteEvent = {
   for_user_id: string
-  mute_events: MuteEvent[]
+  mute_events: MuteEventPayload[]
 }
 
 /**

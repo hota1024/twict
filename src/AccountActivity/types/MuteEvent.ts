@@ -6,6 +6,6 @@ import { ToggleEvent } from './ToggleEvent'
 export type MuteType = 'mute' | 'unmute'
 
 /**
- * MuteEvent type.
+ * MuteEventPayload type.
  */
-export type MuteEvent = ToggleEvent<MuteType>
+export type MuteEventPayload = ToggleEvent<MuteType>
