@@ -1,4 +1,5 @@
 import { UserCredentials } from '@/types/UserCredentials'
+import { ActivityEmitter } from '../ActivityEmitter'
 import { SubscriptionCount } from '../types/SubscriptionCount'
 import { SubscriptionList } from '../types/SubscriptionList'
 import { Webhook } from '../types/Webhook'
@@ -7,7 +8,14 @@ import { WebhookList } from '../types/WebhookList'
 /**
  * ActivityControllable interface.
  */
-export interface ActivityControllable {
+export interface ActivityControllable extends ActivityEmitter {
+  /**
+   * start listener server.
+   *
+   * @param port port.
+   */
+  listen(port: number): Promise<void>
+
   /**
    * registers a webhook with given callback url and returns Webhook object.
    *
