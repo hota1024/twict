@@ -67,12 +67,12 @@ export type DirectMessageEvents = {
 /**
  * DirectMessageIndicateTypingEvents type.
  */
-export type DirectMessageIndicateTypingEvents = unknown
+export type DirectMessageIndicateTypingEvents = Record<string, unknown>
 
 /**
  * DirectMessageMarkReadEvents type.
  */
-export type DirectMessageMarkReadEvents = unknown
+export type DirectMessageMarkReadEvents = Record<string, unknown>
 
 /**
  * TweetDeleteEvents type.
