@@ -1,4 +1,3 @@
-import { Auth } from '@/types/Auth'
 import express, { Express } from 'express'
 import { ActivityListenable } from './interfaces/ActivityListenable'
 import { WebhookHandler } from './WebhookHandler'
