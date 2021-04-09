@@ -2,16 +2,19 @@ import { TwitterClient } from '@/Twitter/interfaces/TwitterClient'
 import { Twitter } from '@/Twitter/Twitter'
 import { Auth } from '@/types/Auth'
 import { UserCredentials } from '@/types/UserCredentials'
+import { ActivityEmitter } from './ActivityEmitter'
+import { ActivityListener } from './ActivityListener'
 import { ActivityControllable } from './interfaces/ActivityControllable'
 import { SubscriptionCount } from './types/SubscriptionCount'
 import { SubscriptionList } from './types/SubscriptionList'
 import { Webhook } from './types/Webhook'
 import { WebhookList } from './types/WebhookList'
+import { WebhookHandler } from './WebhookHandler'
 
 /**
  * Activity class.
  */
-export class Activity implements ActivityControllable {
+export class Activity extends ActivityEmitter implements ActivityControllable {
   /**
    * env.
    */
@@ -28,18 +31,33 @@ export class Activity implements ActivityControllable {
   private readonly twitter: TwitterClient
 
   /**
+   * activity listener.
+   */
+  private readonly listener: ActivityListener
+
+  /**
    * Activity constructor.
    *
    * @param env env.
    * @param auth auth.
    */
   constructor(env: string, auth: Auth) {
+    super()
     this.env = env
     this.auth = auth
     this.twitter = new Twitter(
       auth,
       'https://api.twitter.com/1.1/account_activity'
     )
+
+    const handler = new WebhookHandler(auth, this)
+    const listener = new ActivityListener(handler)
+
+    this.listener = listener
+  }
+
+  listen(port: number): Promise<void> {
+    return this.listener.start(port)
   }
 
   async registerWebhook(url: string): Promise<Webhook> {
