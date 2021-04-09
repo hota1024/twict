@@ -1,11 +1,7 @@
-import { getCrcResponseToken } from '@/helpers/getCrcResponseToken'
 import { Auth } from '@/types/Auth'
-import ngrok, { Ngrok } from 'ngrok'
 import express, { Express } from 'express'
-import {
-  ActivityListenable,
-  OnEventCallback,
-} from './interfaces/ActivityListenable'
+import { ActivityListenable } from './interfaces/ActivityListenable'
+import { WebhookHandler } from './WebhookHandler'
 
 /**
  * ActivityListener class.
@@ -17,65 +13,21 @@ export class ActivityListener implements ActivityListenable {
   private readonly app: Express
 
   /**
-   * on event callbacks.
-   */
-  private readonly onEventCallbacks: OnEventCallback[] = []
-
-  /**
    * ActivityListener constructor.
    *
-   * @param auth auth.
+   * @param handler webhook handler.
    */
-  constructor(auth: Auth) {
+  constructor(handler: WebhookHandler) {
     const app = express()
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
 
-    app.get('/', (req, res) => {
-      const crcToken = req.query.crc_token
-
-      if (typeof crcToken === 'string') {
-        res.send({
-          response_token: getCrcResponseToken(crcToken, auth),
-        })
-      } else {
-        res.status(400).send('crc_token missing from request.')
-      }
-    })
-
-    app.post('/', (req, res) => {
-      console.log(req.body)
-      res.send()
-    })
+    handler.installTo(app, '/')
 
     this.app = app
   }
 
-  async start(
-    port: number,
-    ngrokOptions?: Ngrok.Options | boolean
-  ): Promise<string> {
-    let url = `http://localhost:${port}`
-
-    if (ngrokOptions) {
-      const base: Ngrok.Options = {}
-
-      if (ngrokOptions === true) {
-        base.addr = port
-        url = await ngrok.connect(base)
-      } else if (!ngrokOptions.addr) {
-        base.addr = port
-        url = await ngrok.connect({
-          ...base,
-          ...ngrokOptions,
-        })
-      }
-    }
-
-    return new Promise((resolve) => this.app.listen(port, () => resolve(url)))
-  }
-
-  onEvent(callback: OnEventCallback): void {
-    this.onEventCallbacks.push(callback)
+  start(port: number): Promise<void> {
+    return new Promise((resolve) => this.app.listen(port, () => resolve()))
   }
 }
