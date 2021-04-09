@@ -65,6 +65,16 @@ export type DirectMessageEvents = {
 }
 
 /**
+ * DirectMessageIndicateTypingEvents type.
+ */
+export type DirectMessageIndicateTypingEvents = unknown
+
+/**
+ * DirectMessageMarkReadEvents type.
+ */
+export type DirectMessageMarkReadEvents = unknown
+
+/**
  * TweetDeleteEvents type.
  */
 export type TweetDeleteEvents = {
@@ -83,4 +93,21 @@ export type ActivityEvent =
   | MuteEvent
   | UserEvent
   | DirectMessageEvents
+  | DirectMessageIndicateTypingEvents
+  | DirectMessageMarkReadEvents
   | TweetDeleteEvents
+
+/**
+ * ActivityEventType type.
+ */
+export type ActivityEventType =
+  | 'tweet_create_events'
+  | 'favorite_events'
+  | 'follow_events'
+  | 'block_events'
+  | 'mute_events'
+  | 'user_event'
+  | 'direct_message_events'
+  | 'direct_message_indicate_typing_events'
+  | 'irect_message_mark_rea_events'
+  | 'tweet_delete_events'
