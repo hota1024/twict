@@ -1,4 +1,3 @@
-import { Ngrok } from 'ngrok'
 import { ActivityEvent } from '../types/ActivityEvent'
 
 /**
