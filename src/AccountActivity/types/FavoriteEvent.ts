@@ -8,6 +8,6 @@ export type FavoriteEvent = {
   id: string
   created_at: string
   timestamp_ms: string
-  favorited_status: Tweet[]
+  favorited_status: Tweet
   user: User
 }
