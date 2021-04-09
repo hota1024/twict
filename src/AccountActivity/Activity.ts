@@ -4,6 +4,7 @@ import { Auth } from '@/types/Auth'
 import { UserCredentials } from '@/types/UserCredentials'
 import { ActivityEmitter } from './ActivityEmitter'
 import { ActivityListener } from './ActivityListener'
+import { WebhookHandlable } from './interfaces'
 import { ActivityControllable } from './interfaces/ActivityControllable'
 import { SubscriptionCount } from './types/SubscriptionCount'
 import { SubscriptionList } from './types/SubscriptionList'
@@ -36,6 +37,11 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
   private readonly listener: ActivityListener
 
   /**
+   * webhook handler.
+   */
+  private readonly handler: WebhookHandler
+
+  /**
    * Activity constructor.
    *
    * @param env env.
@@ -53,7 +59,15 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
     const handler = new WebhookHandler(auth, this)
     const listener = new ActivityListener(handler)
 
+    this.handler = handler
     this.listener = listener
+  }
+
+  /**
+   * returns webhook handler.
+   */
+  getHandler(): WebhookHandlable {
+    return this.handler
   }
 
   listen(port: number): Promise<void> {
