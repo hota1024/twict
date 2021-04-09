@@ -98,16 +98,22 @@ export type ActivityEvent =
   | TweetDeleteEvents
 
 /**
+ * ActivityEventMap type.
+ */
+export type ActivityEventMap = {
+  tweet_create_events: TweetCreateEvents
+  favorite_events: FavoriteEvents
+  follow_events: FollowEvents
+  block_events: BlockEvents
+  mute_events: MuteEvent
+  user_event: UserEvent
+  direct_message_events: DirectMessageEvents
+  direct_message_indicate_typing_events: DirectMessageIndicateTypingEvents
+  irect_message_mark_rea_events: DirectMessageMarkReadEvents
+  tweet_delete_events: TweetDeleteEvents
+}
+
+/**
  * ActivityEventType type.
  */
-export type ActivityEventType =
-  | 'tweet_create_events'
-  | 'favorite_events'
-  | 'follow_events'
-  | 'block_events'
-  | 'mute_events'
-  | 'user_event'
-  | 'direct_message_events'
-  | 'direct_message_indicate_typing_events'
-  | 'irect_message_mark_rea_events'
-  | 'tweet_delete_events'
+export type ActivityEventType = keyof ActivityEventMap
