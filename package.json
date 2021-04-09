@@ -67,6 +67,7 @@
     "request-promise": "^4.2.6",
     "smee-client": "^1.2.2",
     "twitter": "^1.7.1",
+    "twitter-d": "^0.4.0",
     "ufo": "^0.6.10"
   }
 }
