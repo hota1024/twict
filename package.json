@@ -59,11 +59,15 @@
   },
   "dependencies": {
     "@types/express": "^4.17.11",
+    "@types/request-promise": "^4.1.47",
     "@types/twitter": "^1.7.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "ngrok": "^4.0.0",
+    "request-promise": "^4.2.6",
+    "smee-client": "^1.2.2",
     "twitter": "^1.7.1",
+    "twitter-d": "^0.4.0",
     "ufo": "^0.6.10"
   }
 }

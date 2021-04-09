@@ -6,7 +6,7 @@ import crypto from 'crypto'
  */
 export const getCrcResponseToken = (token: string, auth: Auth): string => {
   return `sha256=${crypto
-    .createHmac('sha256', auth.consumer_secret)
+    .createHmac('sha256', auth.consumerSecret)
     .update(token)
     .digest('base64')}`
 }

@@ -5,12 +5,12 @@ export type Auth = {
   /**
    * consumer key(API Key).
    */
-  consumer_key: string
+  consumerKey: string
 
   /**
    * consumer secret(API Key Secret).
    */
-  consumer_secret: string
+  consumerSecret: string
 
   /**
    * token(Access Token).
@@ -20,10 +20,10 @@ export type Auth = {
   /**
    * token secret(Access Token Secret).
    */
-  token_secret: string
+  tokenSecret: string
 
   /**
    * bearer token.
    */
-  bearer_token?: string
+  bearerToken?: string
 }
