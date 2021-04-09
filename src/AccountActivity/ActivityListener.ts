@@ -4,7 +4,7 @@ import ngrok, { Ngrok } from 'ngrok'
 import express, { Express } from 'express'
 import {
   ActivityListenable,
-  OnDataCallback,
+  OnEventCallback,
 } from './interfaces/ActivityListenable'
 
 /**
@@ -17,9 +17,9 @@ export class ActivityListener implements ActivityListenable {
   private readonly app: Express
 
   /**
-   * on data callbacks.
+   * on event callbacks.
    */
-  private readonly onDataCallbacks: OnDataCallback[] = []
+  private readonly onEventCallbacks: OnEventCallback[] = []
 
   /**
    * ActivityListener constructor.
@@ -75,7 +75,7 @@ export class ActivityListener implements ActivityListenable {
     return new Promise((resolve) => this.app.listen(port, () => resolve(url)))
   }
 
-  onData(callback: OnDataCallback): void {
-    this.onDataCallbacks.push(callback)
+  onEvent(callback: OnEventCallback): void {
+    this.onEventCallbacks.push(callback)
   }
 }

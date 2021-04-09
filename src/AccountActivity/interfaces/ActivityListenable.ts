@@ -1,9 +1,10 @@
 import { Ngrok } from 'ngrok'
+import { ActivityEvent } from '../types/ActivityEvent'
 
 /**
- * OnDataCallback type.
+ * OnEventCallback type.
  */
-export type OnDataCallback = (data: unknown) => void
+export type OnEventCallback = (event: ActivityEvent) => void
 
 /**
  * ActivityListenable interface.
@@ -26,9 +27,9 @@ export interface ActivityListenable {
   start(port: number, useNgrok?: boolean): Promise<string>
 
   /**
-   * add on data callback.
+   * add on event callback.
    *
    * @param callback callback function.
    */
-  onData(callback: OnDataCallback): void
+  onEvent(callback: OnEventCallback): void
 }
