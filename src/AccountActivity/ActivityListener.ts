@@ -5,7 +5,7 @@ import { WebhookHandler } from './WebhookHandler'
 /**
  * ActivityListener class.
  */
-export class ActivityListener implements ActivityListenable {
+export class ActivityListener implements ActivityListenable<Express> {
   /**
    * express app.
    */
@@ -26,7 +26,9 @@ export class ActivityListener implements ActivityListenable {
     this.app = app
   }
 
-  start(port: number): Promise<void> {
-    return new Promise((resolve) => this.app.listen(port, () => resolve()))
+  start(port: number): Promise<Express> {
+    return new Promise((resolve) =>
+      this.app.listen(port, () => resolve(this.app))
+    )
   }
 }

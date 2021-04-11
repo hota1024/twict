@@ -1,3 +1,4 @@
+import { Express } from 'express'
 import { UserCredentials } from '@/types/UserCredentials'
 import { ActivityEmitter } from '../ActivityEmitter'
 import { SubscriptionCount } from '../types/SubscriptionCount'
@@ -10,11 +11,11 @@ import { WebhookList } from '../types/WebhookList'
  */
 export interface ActivityControllable extends ActivityEmitter {
   /**
-   * start listener server.
+   * start listener server and returns express application.
    *
    * @param port port.
    */
-  listen(port: number): Promise<void>
+  listen(port: number): Promise<Express>
 
   /**
    * registers a webhook with given callback url and returns Webhook object.

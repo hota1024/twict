@@ -8,11 +8,11 @@ export type OnEventCallback = (event: ActivityEvent) => void
 /**
  * ActivityListenable interface.
  */
-export interface ActivityListenable {
+export interface ActivityListenable<T> {
   /**
    * start server.
    *
    * @param port port.
    */
-  start(port: number): Promise<void>
+  start(port: number): Promise<T>
 }

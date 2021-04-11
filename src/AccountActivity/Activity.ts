@@ -1,3 +1,4 @@
+import { Express } from 'express'
 import { TwitterClient } from '@/Twitter/interfaces/TwitterClient'
 import { Twitter } from '@/Twitter/Twitter'
 import { Auth } from '@/types/Auth'
@@ -70,7 +71,7 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
     return this.handler
   }
 
-  listen(port: number): Promise<void> {
+  listen(port: number): Promise<Express> {
     return this.listener.start(port)
   }
 
