@@ -11,7 +11,7 @@ export type DirectMessageEvent = {
     target: {
       recipient_id: string
     }
-    sensor_id: string
+    sender_id: string
     source_app_id: string
     message_data: {
       text: string
