@@ -87,7 +87,7 @@ export class ActivityEmitter implements ActivityEmittable {
   onDirectMessageMarkRead(
     callback: ActivityEmitCallback<DirectMessageMarkReadEvents>
   ): void {
-    this.addTypeCallback('irect_message_mark_rea_events', callback)
+    this.addTypeCallback('direct_message_mark_read_events', callback)
   }
 
   onTweetDelete(callback: ActivityEmitCallback<TweetDeleteEvents>): void {

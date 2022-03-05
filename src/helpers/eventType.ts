@@ -13,7 +13,7 @@ const EVENT_TYPES: ActivityEventType[] = [
   'user_event',
   'direct_message_events',
   'direct_message_indicate_typing_events',
-  'irect_message_mark_rea_events',
+  'direct_message_mark_read_events',
   'tweet_delete_events',
 ]
 

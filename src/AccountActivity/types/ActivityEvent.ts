@@ -110,7 +110,7 @@ export type ActivityEventMap = {
   user_event: UserEvent
   direct_message_events: DirectMessageEvents
   direct_message_indicate_typing_events: DirectMessageIndicateTypingEvents
-  irect_message_mark_rea_events: DirectMessageMarkReadEvents
+  direct_message_mark_read_events: DirectMessageMarkReadEvents
   tweet_delete_events: TweetDeleteEvents
 }
 
