@@ -23,7 +23,7 @@ export type Tweet = {
   in_reply_to_status_id_str?: string | null
   in_reply_to_user_id?: number | null
   in_reply_to_user_id_str?: string | null
-  in_reply_to_screen_name?: number | null
+  in_reply_to_screen_name?: string | null
   user: User
   geo?: Point | null
   coordinates?: Point | null
