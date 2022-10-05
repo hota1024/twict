@@ -42,6 +42,6 @@ export class WebhookHandler implements WebhookHandlable {
   handle_crc(crc_token: string | undefined): CrcResponse | string {
     return typeof crc_token === 'string'
       ? this.crc(crc_token)
-      : 'crc_token missing from request.'
+      : "There is no 'crc_token' found in this request!"
   }
 }
