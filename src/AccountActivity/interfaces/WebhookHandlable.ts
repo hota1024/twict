@@ -24,4 +24,11 @@ export interface WebhookHandlable {
    * @param body event body.
    */
   handle_post(body: ActivityEvent): void
+
+  /**
+   * returns a CrcResponse or error message.
+   *
+   * @param crc_token string.
+   */
+  handle_crc(crc_token: string | undefined): CrcResponse | string
 }
