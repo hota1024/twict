@@ -31,9 +31,6 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
   private readonly twitter: TwitterClient
 
   /**
-   * activity listener.
-   */
-  /**
    * webhook handler.
    */
   private readonly handler: WebhookHandler
