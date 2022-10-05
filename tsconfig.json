@@ -1,17 +1,18 @@
 {
-	"compilerOptions": {
-		"strict": true,
-		"target": "es2017",
-		"module": "CommonJS",
-		"declaration": true,
-		"alwaysStrict": true,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"outDir": "dist",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		}
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2017",
+    "module": "CommonJS",
+    "declaration": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*.*", "tests/**/*.*"]
 }
