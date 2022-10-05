@@ -1,25 +1,10 @@
-<h1 align="center">🐦 twict</h1>
-<h2 align="center">A library for Twitter Account Activity API written in TypeScript</h2>
+# webhoot
 
-## 🚀 Installation
-
-```shell
-yarn add twict
-# or
-npm install twict
-```
+The original developer was too lazy to accept my PRs, so I had to fork and make my own variation that does not depend on Express.
 
 ## 🗺️ Tutorial
 
-### 1. Install twict
-
-```shell
-yarn add twict
-# or
-npm install twict
-```
-
-### 2. ngrok
+### 1. ngrok
 
 [download ngrok](https://ngrok.com/download) to your environment.
 
@@ -29,7 +14,7 @@ start http tunnel on port 5000 and copy `https://*.ngrok.io` url.
 ngrok http 5000
 ```
 
-### 3. Like detection
+### 2. Like detection
 
 ```typescript
 // like-detection.ts

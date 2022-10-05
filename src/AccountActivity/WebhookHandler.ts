@@ -1,4 +1,3 @@
-import { Express } from 'express'
 import { getCrcResponseToken } from '@/helpers/getCrcResponseToken'
 import { Auth } from '@/types/Auth'
 import { ActivityEmittable } from './interfaces/ActivityEmittable'
@@ -36,21 +35,13 @@ export class WebhookHandler implements WebhookHandlable {
     }
   }
 
-  handle(body: ActivityEvent): void {
+  handle_post(body: ActivityEvent): void {
     this.emitter.emitEvent(body)
   }
 
-  installTo(app: Express, path: string): void {
-    app.get(path, (req, res) => {
-      const crcToken = req.query.crc_token
-
-      if (typeof crcToken === 'string') {
-        res.send(this.crc(crcToken))
-      } else {
-        res.status(400).send('crc_token missing from request.')
-      }
-    })
-
-    app.post(path, ({ body }) => this.handle(body))
+  handle_get(crc_token: string | undefined): CrcResponse | string {
+    return typeof crc_token === 'string'
+      ? this.crc(crc_token)
+      : 'crc_token missing from request.'
   }
 }

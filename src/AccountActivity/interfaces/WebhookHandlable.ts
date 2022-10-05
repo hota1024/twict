@@ -23,13 +23,5 @@ export interface WebhookHandlable {
    *
    * @param body event body.
    */
-  handle(body: ActivityEvent): void
-
-  /**
-   * install handler to express app.
-   *
-   * @param app express app.
-   * @param path path.
-   */
-  installTo(app: Express.Application, path: string): void
+  handle_post(body: ActivityEvent): void
 }
