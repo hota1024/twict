@@ -1,11 +1,11 @@
 {
-  "name": "twict",
-  "version": "0.0.3",
+  "name": "webhoot",
+  "version": "0.0.1",
   "license": "MIT",
   "description": "Library for Twitter Account Activity API ",
   "repository": {
     "type": "git",
-    "url": "hota1024/twict"
+    "url": "winstxnhdw/webhoot"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
