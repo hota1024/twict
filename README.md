@@ -2,6 +2,12 @@
 
 The original developer was too lazy to accept my PRs, so I had to fork and make my own variation that does not depend on Express.
 
+## Install
+
+```bash
+yarn add webhoot
+```
+
 ## Example
 
 `src/index.ts`
