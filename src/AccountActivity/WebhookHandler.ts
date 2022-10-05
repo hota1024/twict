@@ -35,11 +35,11 @@ export class WebhookHandler implements WebhookHandlable {
     }
   }
 
-  handle_post(body: ActivityEvent): void {
-    this.emitter.emitEvent(body)
+  async handle_post(body: ActivityEvent): Promise<void> {
+    await this.emitter.emitEvent(body)
   }
 
-  handle_get(crc_token: string | undefined): CrcResponse | string {
+  handle_crc(crc_token: string | undefined): CrcResponse | string {
     return typeof crc_token === 'string'
       ? this.crc(crc_token)
       : 'crc_token missing from request.'

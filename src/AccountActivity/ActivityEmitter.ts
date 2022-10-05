@@ -32,22 +32,12 @@ export class ActivityEmitter implements ActivityEmittable {
    */
   private readonly callbacks: TypeCallback[] = []
 
-  /**
-   * event callbacks.
-   */
-  private readonly eventCallbacks: ActivityEmitCallback<ActivityEvent>[] = []
-
-  emitEvent(event: ActivityEvent): void {
-    const type = getEventType(event)
-
-    const callbacks = this.callbacks.filter((c) => c.type === type)
-    callbacks.forEach(({ callback }) => callback(event))
-
-    this.eventCallbacks.forEach((fn) => fn(event))
-  }
-
-  onEvent(callback: ActivityEmitCallback<ActivityEvent>): void {
-    this.eventCallbacks.push(callback)
+  async emitEvent(event: ActivityEvent): Promise<void> {
+    await Promise.all(
+      this.callbacks
+        .filter((callback) => callback.type === getEventType(event))
+        .map(async (callback) => await callback.callback(event))
+    )
   }
 
   onTweetCreate(callback: ActivityEmitCallback<TweetCreateEvents>): void {

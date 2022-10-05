@@ -2,55 +2,50 @@
 
 The original developer was too lazy to accept my PRs, so I had to fork and make my own variation that does not depend on Express.
 
-## 🗺️ Tutorial
+## Example
 
-### 1. ngrok
-
-[download ngrok](https://ngrok.com/download) to your environment.
-
-start http tunnel on port 5000 and copy `https://*.ngrok.io` url.
-
-```shell
-ngrok http 5000
-```
-
-### 2. Like detection
+`src/index.ts`
 
 ```typescript
-// like-detection.ts
-import { Activity, isExpectEventType } from 'twict'
+import { Activity } from 'webhoot'
 
-async function main() {
-  const activity = new Activity('your environment label', {
-    consumerKey: 'your consumer key',
-    consumerSecret: 'your consumer secret',
-    token: 'your access token',
-    tokenSecret: 'your access token secret',
-  })
+export const twitter_activity = new Activity('<ENVIRONMENT-LABEL>', {
+  consumerKey: '<CONSUMER-KEY>',
+  consumerSecret: '<CONSUMER-SECRET>',
+  token: '<ACCESS-TOKEN>',
+  tokenSecret: '<ACCESS-TOKEN-SECRET>',
+})
 
-  activity.onEvent((event) => {
-    if (isExpectEventType(event, 'favorite_events')) {
-      for (const like of event.favorite_events) {
-        console.log(
-          `${like.user.screen_name} liked your tweet (${like.favorited_status.text})`
-        )
-      }
-    }
-  })
-
-  await activity.listen(5000)
-
-  await activity.deleteAllWebhooks()
-  await activity.registerWebhook('your ngrok url here')
-  await activity.subscribe()
+const handle_favorite_events = (event) => {
+  for (const like of event.favorite_events) {
+    console.log(
+      `${like.user.screen_name} liked your tweet (${like.favorited_status.text})`
+    )
+  }
 }
 
-main()
+export const handler: Handler = async (event: LambdaFunctionURLEvent): Promise<APIGatewayProxyResultV2> => {
+  if (event.requestContext.http.method === 'GET') {
+    const response = twitter_activity.handle_crc(event.queryStringParameters!['crc_token'])
+    return typeof response === 'string'
+      ? { statusCode: 400, body: response }
+      : { statusCode: 200, body: JSON.stringify(response) }
+  }
 
+  twitter_activity.onFavorite(handle_favorite_events)
+
+  return twitter_activity.handle_post(event.body)
+    ? { statusCode: 200, body: 'OK!' }
+    : { statusCode: 400, body: 'Invalid request!' }
+}
 ```
 
-and run with ts-node.
+`src/register_webhook.ts`
 
-```shell
-npx ts-node like-detection.ts
+```typescript
+import { twitter_activity } from 'src/index.ts'
+
+await twitter_activity.deleteAllWebhooks()
+await twitter_activity.registerWebhook('<WEBHOOK_ENDPOINT>')
+await twitter_activity.subscribe()
 ```
