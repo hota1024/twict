@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-eslint": "^8.0.1",
-    "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
     "@types/request-promise": "^4.1.47",
     "@types/twitter": "^1.7.0",
@@ -63,7 +62,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "express": "^4.17.1",
     "request-promise": "^4.2.6",
     "twitter": "^1.7.1",
     "ufo": "^0.6.10"

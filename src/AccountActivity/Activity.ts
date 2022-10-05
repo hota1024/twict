@@ -1,10 +1,8 @@
-import { Express } from 'express'
 import { TwitterClient } from '@/Twitter/interfaces/TwitterClient'
 import { Twitter } from '@/Twitter/Twitter'
 import { Auth } from '@/types/Auth'
 import { UserCredentials } from '@/types/UserCredentials'
 import { ActivityEmitter } from './ActivityEmitter'
-import { ActivityListener } from './ActivityListener'
 import { WebhookHandlable } from './interfaces'
 import { ActivityControllable } from './interfaces/ActivityControllable'
 import { SubscriptionCount } from './types/SubscriptionCount'
@@ -35,8 +33,6 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
   /**
    * activity listener.
    */
-  private readonly listener: ActivityListener
-
   /**
    * webhook handler.
    */
@@ -58,10 +54,7 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
     )
 
     const handler = new WebhookHandler(auth, this)
-    const listener = new ActivityListener(handler)
-
     this.handler = handler
-    this.listener = listener
   }
 
   /**
@@ -69,10 +62,6 @@ export class Activity extends ActivityEmitter implements ActivityControllable {
    */
   getHandler(): WebhookHandlable {
     return this.handler
-  }
-
-  listen(port: number): Promise<Express> {
-    return this.listener.start(port)
   }
 
   async registerWebhook(url: string): Promise<Webhook> {
