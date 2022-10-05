@@ -23,7 +23,7 @@ export interface WebhookHandlable {
    *
    * @param body event body.
    */
-  handle_post(body: ActivityEvent): void
+  handle_post(body: ActivityEvent): Promise<void>
 
   /**
    * returns a CrcResponse or error message.
