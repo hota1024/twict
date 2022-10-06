@@ -23,7 +23,7 @@ export interface WebhookHandlable {
    *
    * @param body event body.
    */
-  handle(body: ActivityEvent): void
+  handle(body: ActivityEvent): Promise<void>
 
   /**
    * install handler to express app.
