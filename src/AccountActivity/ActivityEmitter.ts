@@ -44,7 +44,7 @@ export class ActivityEmitter implements ActivityEmittable {
         .map(async (callback) => await callback.callback(event))
     )
 
-    await Promise.all(this.eventCallbacks.map(async(fn) => await fn(event)))
+    await Promise.all(this.eventCallbacks.map(async (fn) => await fn(event)))
   }
 
   onEvent(callback: ActivityEmitCallback<ActivityEvent>): void {
