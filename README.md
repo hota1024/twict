@@ -43,13 +43,11 @@ async function main() {
     tokenSecret: 'your access token secret',
   })
 
-  activity.onEvent((event) => {
-    if (isExpectEventType(event, 'favorite_events')) {
-      for (const like of event.favorite_events) {
-        console.log(
-          `${like.user.screen_name} liked your tweet (${like.favorited_status.text})`
-        )
-      }
+  activity.onFavorite((event) => {
+    for (const like of event.favorite_events) {
+      console.log(
+        `${like.user.screen_name} liked your tweet (${like.favorited_status.text})`
+      )
     }
   })
 
