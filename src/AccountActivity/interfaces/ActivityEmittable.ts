@@ -15,7 +15,9 @@ import {
 /**
  * ActivityEmitCallback type.
  */
-export type ActivityEmitCallback<T extends ActivityEvent> = (event: T) => Promise<void>
+export type ActivityEmitCallback<T extends ActivityEvent> = (
+  event: T
+) => Promise<void>
 
 /**
  * ActivityEmittable type.
@@ -32,6 +34,7 @@ export interface ActivityEmittable {
    * add a callback for all activity events.
    *
    * @param callback event callback.
+   * @deprecated use `on{EVENT_NAME}()` instead(e.g `onTweetCreate(e => ...)`, `onFavorite(e => ...)`).
    */
   onEvent(callback: ActivityEmitCallback<ActivityEvent>): void
 
