@@ -36,8 +36,8 @@ export class WebhookHandler implements WebhookHandlable {
     }
   }
 
-  handle(body: ActivityEvent): void {
-    this.emitter.emitEvent(body)
+  async handle(body: ActivityEvent): Promise<void> {
+    await this.emitter.emitEvent(body)
   }
 
   installTo(app: Express, path: string): void {

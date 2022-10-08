@@ -15,7 +15,7 @@ import {
 /**
  * ActivityEmitCallback type.
  */
-export type ActivityEmitCallback<T extends ActivityEvent> = (event: T) => void
+export type ActivityEmitCallback<T extends ActivityEvent> = (event: T) => Promise<void>
 
 /**
  * ActivityEmittable type.
@@ -26,7 +26,7 @@ export interface ActivityEmittable {
    *
    * @param event activity event.
    */
-  emitEvent(event: ActivityEvent): void
+  emitEvent(event: ActivityEvent): Promise<void>
 
   /**
    * add a callback for all activity events.
