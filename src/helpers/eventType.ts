@@ -37,5 +37,9 @@ export const getEventType = (event: ActivityEvent): ActivityEventType => {
     }
   }
 
-  throw new Error(`getEventType error: unknown event type.`)
+  throw new Error(
+    `[twict] getEventType error: unknown event type.\nevent json: ${JSON.stringify(
+      event
+    )}`
+  )
 }
